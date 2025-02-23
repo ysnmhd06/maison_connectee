@@ -8,31 +8,28 @@ class Portail(Node):
         super().__init__('portail')
         self.etat = "fermé"
         self.sub = self.create_subscription(String, 'commande_portail', self.controler_portail, 10)
-        print("Portail prêt à être commandé.")
+        print("Portail prêt.")
 
     def controler_portail(self, msg):
         if msg.data == "toggle":
             if self.etat == "fermé":
                 self.etat = "ouvert"
-                print("Portail 🚪 En train de s'ouvrir...")
-                time.sleep(2)  # Simulation de l'ouverture
-                print("Portail ✅ Ouvert.")
+                print("Ouverture du portail...")
+                time.sleep(2)
+                print("Portail ouvert.")
             else:
                 self.etat = "fermé"
-                print("Portail 🚪 En train de se fermer...")
-                time.sleep(2)  # Simulation de la fermeture
-                print("Portail ❌ Fermé.")
+                print("Fermeture du portail...")
+                time.sleep(2)
+                print("Portail fermé.")
 
 def main():
     rclpy.init()
     node = Portail()
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        print("Arrêt du portail.")
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
+

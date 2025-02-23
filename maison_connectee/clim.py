@@ -10,11 +10,11 @@ class Clim(Node):
     def reagir_temp(self, msg):
         t = msg.data
         if t > 25.0:
-            self.get_logger().info(f'Temp : {t}°C -> Clim activée')
+            self.get_logger().info(f'Temp : {t:.2f}°C -> Clim activée')
         elif t < 18.0:
-            self.get_logger().info(f'Temp : {t}°C -> Chauffage activé')
+            self.get_logger().info(f'Temp : {t:.2f}°C -> Chauffage activé')
         else:
-            self.get_logger().info(f'Temp : {t}°C -> Système en veille')
+            self.get_logger().info(f'Temp : {t:.2f}°C -> Système en veille')
 
 def main():
     rclpy.init()
@@ -25,3 +25,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

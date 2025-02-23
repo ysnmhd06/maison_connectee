@@ -9,9 +9,9 @@ class BPPortail(Node):
 
     def envoyer_commande(self):
         while rclpy.ok():
-            input("\n[BP Portail] Appuyez sur Entrée pour ouvrir/fermer le portail...")
+            input("Appuyez sur Entrée pour ouvrir/fermer le portail...")
             self.pub.publish(String(data="toggle"))
-            print("BP Portail Commande envoyée : toggle")
+            print("Commande envoyée : toggle")
 
 def main():
     rclpy.init()
@@ -26,3 +26,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

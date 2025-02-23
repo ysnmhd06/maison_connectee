@@ -12,7 +12,7 @@ class Temp(Node):
     def envoi_temp(self):
         valeur = random.uniform(15.0, 30.0)
         self.pub.publish(Float32(data=valeur))
-        self.get_logger().info(f'Température : {valeur}')
+        self.get_logger().info(f'Température : {valeur:.2f}°C')
 
 def main():
     rclpy.init()
@@ -23,3 +23,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

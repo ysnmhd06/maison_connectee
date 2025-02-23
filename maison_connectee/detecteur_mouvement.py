@@ -5,27 +5,26 @@ from std_msgs.msg import String
 class DetecteurMouvement(Node):
     def __init__(self):
         super().__init__('detecteur_mouvement')
-        self.pub = self.create_publisher(String, 'detecteur_mouvement', 10)
+        self.pub = self.create_publisher(String, 'mouvement', 10)
 
-    def simuler_mouvement(self):
+    def detecter(self):
         while rclpy.ok():
-            mouvement = input("\nDétecteur Tapez 'mouvement' pour simuler une détection : ").strip().lower()
-            if mouvement == "mouvement":
-                self.pub.publish(String(data="détection"))
-                print("Détecteur Mouvement détecté !")
-            else:
-                print("Détecteur Commande invalide.")
+            mouvement = input("Détecteur : Tape 'mouvement' pour activer la lumière : ").strip()
+            if mouvement.lower() == 'mouvement':
+                self.pub.publish(String(data='mouvement_detecte'))
+                self.get_logger().info("Mouvement détecté !")
 
 def main():
     rclpy.init()
     node = DetecteurMouvement()
     try:
-        node.simuler_mouvement()
+        node.detecter()
     except KeyboardInterrupt:
-        print("Arrêt du détecteur de mouvement.")
+        pass
     finally:
         node.destroy_node()
         rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
+

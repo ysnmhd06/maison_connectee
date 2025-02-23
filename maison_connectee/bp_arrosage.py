@@ -5,16 +5,13 @@ from std_msgs.msg import String
 class BPArrosage(Node):
     def __init__(self):
         super().__init__('bp_arrosage')
-        self.pub = self.create_publisher(String, 'evenement_horaire', 10)
+        self.pub = self.create_publisher(String, 'commande_arrosage', 10)
 
     def envoyer_commande(self):
         while rclpy.ok():
-            commande = input("\nBP Arrosage Tapez 'activer' ou 'arreter' : ").strip().lower()
-            if commande in ['activer', 'arrêter']:
-                self.pub.publish(String(data=f"BP Arrosage : {commande}"))
-                print(f"BP Arrosage Commande envoyée : {commande}")
-            else:
-                print("BP Arrosage Commande invalide.")
+            input("Appuyez sur Entrée pour activer l'arrosage...")
+            self.pub.publish(String(data="activer"))
+            print("Commande arrosage envoyée.")
 
 def main():
     rclpy.init()
@@ -29,3 +26,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

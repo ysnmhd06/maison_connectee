@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Maison Connectée</title>
 </head>
 <body>
-    <h1>Bienvenue dans la Maison Connectée</h1>
-    <p>Interface Web opérationnelle !</p>
+    <h1>🏠 Maison Connectée</h1>
+
+    <h3>🌡 Température actuelle : {{ temperature }} °C</h3>
+    <p>💨 État de la climatisation : {{ clim }}</p>
+    <p>🚪 Portail : {{ portail }}</p>
+    <p>🪟 Store : {{ store }}</p>
+    <p>💧 Arrosage : {{ arrosage }}</p>
+    <p>💡 Lumière : {{ lumiere }}</p>
+
+    <form method="POST" action="/control">
+        <button name="action" value="portail">Ouvrir/Fermer le Portail</button>
+        <button name="action" value="store">Lever/Baisser le Store</button>
+        <button name="action" value="arrosage">Activer/Désactiver l'Arrosage</button>
+    </form>
 </body>
 </html>
+

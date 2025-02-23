@@ -6,17 +6,16 @@ import time
 class Lumiere(Node):
     def __init__(self):
         super().__init__('lumiere')
-        self.sub = self.create_subscription(String, 'detecteur_mouvement', self.activer_lumiere, 10)
+        self.sub = self.create_subscription(String, 'mouvement', self.allumer_lumiere, 10)
         self.etat = "éteinte"
-        print("Lumière Prête à s'allumer en cas de mouvement.")
 
-    def activer_lumiere(self, msg):
-        if msg.data == "détection" and self.etat == "éteinte":
+    def allumer_lumiere(self, msg):
+        if msg.data == 'mouvement_detecte':
             self.etat = "allumée"
-            print("Lumière 🔆 Allumée pendant 5 secondes...")
+            self.get_logger().info("💡 Lumière allumée (5s)")
             time.sleep(5)
             self.etat = "éteinte"
-            print("Lumière 💡 Éteinte.")
+            self.get_logger().info("💡 Lumière éteinte")
 
 def main():
     rclpy.init()
@@ -24,10 +23,11 @@ def main():
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        print("Arrêt de la lumière.")
+        pass
     finally:
         node.destroy_node()
         rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
+
