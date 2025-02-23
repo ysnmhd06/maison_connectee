@@ -9,12 +9,12 @@ class BPStore(Node):
 
     def envoyer_commande(self):
         while rclpy.ok():
-            commande = input("\n[BP Store] Tapez 'monter' ou 'descendre' : ").strip().lower()
+            commande = input("\nBP Store Tapez 'monter' ou 'descendre' : ").strip().lower()
             if commande in ['monter', 'descendre']:
                 self.pub.publish(String(data=f"BP Store : {commande}"))
-                print(f"[BP Store] ✅ Commande envoyée : {commande}")
+                print(f"BP Store ✅ Commande envoyée : {commande}")
             else:
-                print("[BP Store] ❌ Commande invalide.")
+                print("BP Store ❌ Commande invalide.")
 
 def main():
     rclpy.init()

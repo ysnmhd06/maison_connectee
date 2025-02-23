@@ -9,26 +9,26 @@ class Arrosage(Node):
         super().__init__('arrosage')
         self.etat = 'arrêté'
         self.sub = self.create_subscription(String, 'evenement_horaire', self.controler_arrosage, 10)
-        print("[Arrosage] Prêt à recevoir des commandes.")
+        print("Arrosage prêt à recevoir des commandes.")
 
     def controler_arrosage(self, msg):
         commande = msg.data
-        print(f"[Arrosage] Commande reçue : {commande}")
+        print(f"Arrosage Commande reçue : {commande}")
 
         if "Arrosage" in commande and self.etat == 'arrêté':
             self.etat = 'activé'
-            print("[Arrosage] Activé pour 5 minutes.")
+            print("Arrosage Activé pour 5 minutes.")
             threading.Thread(target=self.eteindre_apres_delai, daemon=True).start()
 
         elif "BP Arrosage : arrêter" in commande and self.etat == 'activé':
             self.etat = 'arrêté'
-            print("[Arrosage] Arrêté manuellement via bouton.")
+            print("Arrosage Arrêté manuellement via bouton.")
 
     def eteindre_apres_delai(self):
-        time.sleep(300)  # 5 minutes
+        time.sleep(300)  #5 min
         if self.etat == 'activé':
             self.etat = 'arrêté'
-            print("[Arrosage] Éteint après 5 minutes.")
+            print("Arrosage eteint après 5 minutes.")
 
 def main():
     rclpy.init()

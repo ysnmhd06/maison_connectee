@@ -8,15 +8,15 @@ class Lumiere(Node):
         super().__init__('lumiere')
         self.sub = self.create_subscription(String, 'detecteur_mouvement', self.activer_lumiere, 10)
         self.etat = "éteinte"
-        print("[Lumière] Prête à s'allumer en cas de mouvement.")
+        print("Lumière Prête à s'allumer en cas de mouvement.")
 
     def activer_lumiere(self, msg):
         if msg.data == "détection" and self.etat == "éteinte":
             self.etat = "allumée"
-            print("[Lumière] 🔆 Allumée pendant 5 secondes...")
-            time.sleep(5)  # Attend 5 secondes
+            print("Lumière 🔆 Allumée pendant 5 secondes...")
+            time.sleep(5)
             self.etat = "éteinte"
-            print("[Lumière] 💡 Éteinte.")
+            print("Lumière 💡 Éteinte.")
 
 def main():
     rclpy.init()

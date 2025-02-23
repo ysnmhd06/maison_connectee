@@ -8,20 +8,20 @@ class Portail(Node):
         super().__init__('portail')
         self.etat = "fermé"
         self.sub = self.create_subscription(String, 'commande_portail', self.controler_portail, 10)
-        print("[Portail] Prêt à être commandé.")
+        print("Portail prêt à être commandé.")
 
     def controler_portail(self, msg):
         if msg.data == "toggle":
             if self.etat == "fermé":
                 self.etat = "ouvert"
-                print("[Portail] 🚪 En train de s'ouvrir...")
+                print("Portail 🚪 En train de s'ouvrir...")
                 time.sleep(2)  # Simulation de l'ouverture
-                print("[Portail] ✅ Ouvert.")
+                print("Portail ✅ Ouvert.")
             else:
                 self.etat = "fermé"
-                print("[Portail] 🚪 En train de se fermer...")
+                print("Portail 🚪 En train de se fermer...")
                 time.sleep(2)  # Simulation de la fermeture
-                print("[Portail] ❌ Fermé.")
+                print("Portail ❌ Fermé.")
 
 def main():
     rclpy.init()

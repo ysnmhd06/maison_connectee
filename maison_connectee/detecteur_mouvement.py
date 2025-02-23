@@ -9,12 +9,12 @@ class DetecteurMouvement(Node):
 
     def simuler_mouvement(self):
         while rclpy.ok():
-            mouvement = input("\n[Détecteur] Tapez 'mouvement' pour simuler une détection : ").strip().lower()
+            mouvement = input("\nDétecteur Tapez 'mouvement' pour simuler une détection : ").strip().lower()
             if mouvement == "mouvement":
                 self.pub.publish(String(data="détection"))
-                print("[Détecteur] Mouvement détecté !")
+                print("Détecteur Mouvement détecté !")
             else:
-                print("[Détecteur] Commande invalide.")
+                print("Détecteur Commande invalide.")
 
 def main():
     rclpy.init()

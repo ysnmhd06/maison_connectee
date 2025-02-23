@@ -9,12 +9,12 @@ class BPArrosage(Node):
 
     def envoyer_commande(self):
         while rclpy.ok():
-            commande = input("\n[BP Arrosage] Tapez 'activer' ou 'arrêter' : ").strip().lower()
+            commande = input("\nBP Arrosage Tapez 'activer' ou 'arreter' : ").strip().lower()
             if commande in ['activer', 'arrêter']:
                 self.pub.publish(String(data=f"BP Arrosage : {commande}"))
-                print(f"[BP Arrosage] Commande envoyée : {commande}")
+                print(f"BP Arrosage Commande envoyée : {commande}")
             else:
-                print("[BP Arrosage] Commande invalide.")
+                print("BP Arrosage Commande invalide.")
 
 def main():
     rclpy.init()
